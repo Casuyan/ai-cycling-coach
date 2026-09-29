@@ -2,30 +2,56 @@
 
 ![ai-cycling-coach: a power trace of four 3-minute intervals ending in the workout step "3m 420W"](docs/cover.png)
 
-A cycling coach that runs on a coding agent and your intervals.icu account.
+**Your coach is a coding agent and a text file.**
 
-The agent reads your rides, wellness data and calendar from intervals.icu, checks in with you
-after sessions, and changes the plan directly on your calendar. If intervals.icu is connected to
-Garmin or Wahoo, the workouts land on your head unit.
+It reads your rides, sleep and HRV from intervals.icu, talks through each session with you, and
+rewrites your plan straight on your calendar. Connect intervals.icu to Garmin or Wahoo and
+tomorrow's workout is on your head unit before you wake up.
 
-The coaching method is written in plain text ([METHOD.md](METHOD.md)). You can read every
-rule and the reason for it, and change any of them by editing a file.
+The coaching method is plain text in [METHOD.md](METHOD.md). Every rule comes with its reason,
+and if you disagree with one, you edit it.
 
-## Why
+## Why I built it
 
-I built this for myself because I wasn't happy with the "adaptive" training plans I'd tried.
-I finally had time to build it in May 2026, when a car decided it needed the lane more than I did.
-I broke my shoulder blade, and this helped me through six weeks of indoor rehab, back onto the
-road, through a season of fun races, and into the best shape I've been in.
+I'd tried the "adaptive" training apps, and none of them adapted to me. In May 2026 a car
+decided it needed the lane more than I did, broke my shoulder blade, and gave me the time to
+build something better. This coach got me through six weeks of hands-free indoor rehab, back on
+the road, through a season of fun races, and into the best shape of my life.
 
-What made the difference was how personal it got. The coach knew my lab curve, my injury, which
-days my group rides land on and how hard they really are, the fuelling mistakes I'd made, and
-every time I'd told it a number was wrong. A cold, a trip or a bad night's sleep changed the
-plan the same day, with a reason I could read. No app I'd used came close to that.
+What made it work was how well it knew me: my lab curve, my injury, the Thursday group ride that
+always turns into a race, the granfondo where I ran out of fuel, and every time I'd told it a
+number was wrong. A cold, a trip or a bad night's sleep changed the plan the same day, with the
+reasoning written out.
+
+I'm also not the most organised person. The coach let me move things around as much as I needed,
+and still held me to account: a skipped session got asked about, an easy day ridden hard got
+called out. That mix of flexibility and accountability is what kept me in my lane (the car
+notwithstanding).
+
+## Zoomed in and zoomed out
+
+This is the part I'd miss most if I went back to an app. The coach plans on three horizons at
+once and keeps them honest with each other.
+
+- **Season.** Your goal, your races, holidays and busy months, planned backwards from the event
+  that matters most. It sits in `athlete/SEASON_PLAN.md` and as race and note markers on your calendar.
+- **Block.** Three to eight weeks with one job: build the base, raise threshold, sharpen for
+  racing. Each block has a written design and a reason for it.
+- **Day.** Every check-in: what was planned, what you actually did, how your body is doing, and
+  what changes.
+
+The day never loses sight of the season. Skip a session after four hours of sleep and the coach
+knows whether it mattered for this block, so it moves it or drops it. It works upwards too: when
+the daily numbers say you're ahead or behind, the block gets redesigned and the season goal gets
+a second look. Each of those decisions is logged, so next month's coach knows why.
+
+When something comes up last minute (a meeting runs late, the weather turns, friends call a
+ride), the coach rebuilds the rest of the week around the sessions that matter most for your
+goal right now, and lets the others go. You get the most training out of the time you actually have.
 
 ## Requirements
 
-These are non-negotiable. The method depends on them!
+Non-negotiable. The method is built on these!
 
 - **A power meter** (pedals, crank, hub, or a smart trainer that records power). Zones, load,
   pacing and the HR-vs-power checks all run on power.
@@ -35,8 +61,8 @@ These are non-negotiable. The method depends on them!
   [Codex](https://openai.com/codex) or [Cursor](https://cursor.com).
 - **Python 3.** Standard library only, nothing to install.
 
-Recommended: a heart rate strap, a smart trainer, and a lab lactate test if you can get one.
-HRV and sleep data from a watch or ring make the check-ins better.
+Worth having: a heart rate strap, a smart trainer, and a lab lactate test if you can get one.
+HRV and sleep data from a watch or ring make every check-in sharper.
 
 ## Setup
 
@@ -59,9 +85,11 @@ Just talk to it:
   doing, and what changes.
 - "I'm away Friday to Monday, no bike." It reshapes the week.
 - "Analyse yesterday's ride. What was my best 5 minutes?"
+- "Is my season goal still realistic? Plan the next block."
 
 Check in after key sessions and tell it about life: travel, bad sleep, a group ride that got
-out of hand. Push back when something looks wrong. Your corrections get written down as rules.
+out of hand. Argue when something looks wrong. It's usually worth it, and your corrections
+become rules the coach follows from then on.
 
 ## How it works
 
@@ -105,3 +133,5 @@ I'm Francesco. I ride and race in Zürich and work in AI Security / Safety. You 
 [Strava](https://www.strava.com/athletes/71763685) and on grouprides with [Zürides](https://zurides.cc/).
 
 MIT licensed.
+
+<sub>progressive ciclismo</sub>
