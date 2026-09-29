@@ -1,5 +1,7 @@
 # ai-cycling-coach
 
+![ai-cycling-coach: a power trace of four 3-minute intervals ending in the workout step "3m 420W"](docs/cover.png)
+
 A cycling coach that runs on a coding agent and your intervals.icu account.
 
 The agent reads your rides, wellness data and calendar from intervals.icu, checks in with you
